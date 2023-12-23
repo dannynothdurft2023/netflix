@@ -46,7 +46,8 @@ export async function POST(req: Request) {
       const response = NextResponse.json({
         success: true,
         message: "Du bist eingelogt",
-        data: token,
+        token: token,
+        data: user,
       });
 
       const cookieOptions: [string, string, any] = [

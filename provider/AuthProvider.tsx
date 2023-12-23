@@ -20,7 +20,6 @@ const AuthProvider = ({ children }: { children: React.ReactNode }) => {
       if (response.data.success) {
         setUserInfo(response.data.data);
         dispatch(incrementUser(response.data.data));
-        router.push("/profiles");
       } else {
         localStorage.removeItem("user");
         router.push("/auth");

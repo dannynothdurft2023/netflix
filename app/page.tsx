@@ -7,6 +7,8 @@ export default function Home() {
   const router = useRouter();
   const { user } = useSelector((state: any) => state.user);
 
+  console.log(user);
+
   const logout = async () => {
     try {
       const response = await axios.post(`${process.env.URL}/auth/logout`);
@@ -25,12 +27,10 @@ export default function Home() {
     user && (
       <>
         <main>
-          <h1 className="text-2xl text-green-500">Netflix</h1>
+          <h1 className="text-2xl text-green-500">{user?.username}</h1>
           <button className="h-10 w-full bg-white" onClick={logout}>
             Abmelden
           </button>
-
-          <h1>{user?.username}</h1>
         </main>
       </>
     )

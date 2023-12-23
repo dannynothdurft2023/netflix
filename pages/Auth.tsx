@@ -49,8 +49,8 @@ const Auth = () => {
         data: { email: data.email, password: data.password },
       });
       if (response.status === 200) {
-        dispatch(incrementUser(data));
-        localStorage.setItem("user", response.data.data);
+        dispatch(incrementUser(response.data.data));
+        localStorage.setItem("user", response.data.token);
         router.push("/profiles");
       }
     } catch (error: any) {
