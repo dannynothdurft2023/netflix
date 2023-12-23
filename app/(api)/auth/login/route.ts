@@ -49,12 +49,18 @@ export async function POST(req: Request) {
         data: token,
       });
 
-      response.cookies.set("token", token, {
-        httpOnly: true,
-        path: "/",
-        sameSite: "None",
-        secure: true,
-      });
+      const cookieOptions: [string, string, any] = [
+        "token",
+        token,
+        {
+          httpOnly: true,
+          path: "/",
+          sameSite: "None",
+          secure: true,
+        },
+      ];
+
+      response.cookies.set(...cookieOptions);
 
       return response;
     } else {
