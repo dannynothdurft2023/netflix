@@ -9,8 +9,6 @@ import Input from "@/components/Input";
 
 const Auth = () => {
   const router = useRouter();
-  const currentUrl =
-    typeof window !== "undefined" ? window.location.origin : "";
   const [variant, setVariant] = useState("login");
   const [data, setData] = useState({
     username: "",
@@ -31,7 +29,7 @@ const Auth = () => {
 
   const register = useCallback(async () => {
     try {
-      const response = await axios.post(`${currentUrl}/auth/register`, {
+      const response = await axios.post(`${process.env.URL}/auth/register`, {
         data,
       });
       if (response.status === 200) {
@@ -46,7 +44,7 @@ const Auth = () => {
   const login = useCallback(async () => {
     console.log(data);
     try {
-      const response = await axios.post(`${currentUrl}/auth/login`, {
+      const response = await axios.post(`${process.env.URL}/auth/login`, {
         data: { email: data.email, password: data.password },
       });
       if (response.status === 200) {

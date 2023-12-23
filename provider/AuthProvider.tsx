@@ -5,14 +5,12 @@ import axios from "axios";
 
 const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   const router = useRouter();
-  const currentUrl =
-    typeof window !== "undefined" ? window.location.origin : "";
   const [userInfo, setUserInfo] = useState(null);
 
   const getData = async () => {
     try {
       const token = localStorage.getItem("user");
-      const response = await axios.post(`${currentUrl}/auth/userinfo`, {
+      const response = await axios.post(`${process.env.URL}/auth/userinfo`, {
         headers: { Authorization: token },
       });
 
