@@ -31,7 +31,7 @@ export async function POST(req: Request) {
 
     const user = await collection.insertOne({
       email: data.email,
-      name: data.username,
+      username: data.username,
       hashedPassword: hashedPassword,
       image: "",
       createdAt: new Date(),

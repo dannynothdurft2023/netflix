@@ -3,11 +3,14 @@ import React, { useState, useCallback } from "react";
 import Image from "next/image";
 import axios from "axios";
 import { useRouter } from "next/navigation";
+import { useDispatch } from "react-redux";
+import { incrementUser } from "@/redux/reducer/user";
 
 import Input from "@/components/Input";
 
 const Auth = () => {
   const router = useRouter();
+  const dispatch = useDispatch();
   const [variant, setVariant] = useState("login");
   const [data, setData] = useState({
     username: "",
@@ -41,15 +44,14 @@ const Auth = () => {
   }, [data.email, data.password, data.passwordRepeat, data.username]);
 
   const login = useCallback(async () => {
-    console.log(data);
     try {
       const response = await axios.post(`${process.env.URL}/auth/login`, {
         data: { email: data.email, password: data.password },
       });
       if (response.status === 200) {
-        console.log(response.data.message);
+        dispatch(incrementUser(data));
         localStorage.setItem("user", response.data.data);
-        router.push("/");
+        router.push("/profiles");
       }
     } catch (error: any) {
       console.log(error);

@@ -2,8 +2,11 @@
 import React, { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import axios from "axios";
+import { useDispatch } from "react-redux";
+import { incrementUser } from "@/redux/reducer/user";
 
 const AuthProvider = ({ children }: { children: React.ReactNode }) => {
+  const dispatch = useDispatch();
   const router = useRouter();
   const [userInfo, setUserInfo] = useState(null);
 
@@ -16,7 +19,8 @@ const AuthProvider = ({ children }: { children: React.ReactNode }) => {
 
       if (response.data.success) {
         setUserInfo(response.data.data);
-        router.push("/");
+        dispatch(incrementUser(response.data.data));
+        router.push("/profiles");
       } else {
         localStorage.removeItem("user");
         router.push("/auth");
