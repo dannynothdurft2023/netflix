@@ -4,7 +4,6 @@ import Image from "next/image";
 import axios from "axios";
 import { useRouter } from "next/navigation";
 
-// components
 import Input from "@/components/Input";
 
 const Auth = () => {
