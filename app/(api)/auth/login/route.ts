@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { MongoClient } from "mongodb";
 import { compare } from "bcrypt";
+import jwt from "jsonwebtoken";
 
 const uri = process.env.DATABASE_URL;
 const client = new MongoClient(uri);
@@ -35,11 +36,31 @@ export async function POST(req: Request) {
     }
 
     if (user && isCorrectPassword) {
-      return NextResponse.json({
+      const tokenData = {
+        _id: user._id,
+        email: user.email,
+        password: user.password,
+        username: user.username,
+      };
+
+      const token = jwt.sign(tokenData, "AUTH", {
+        expiresIn: 60 * 60,
+      });
+
+      const response = NextResponse.json({
         success: true,
         message: "Du bist eingelogt",
-        data: data,
+        data: token,
       });
+
+      response.cookies.set("token", token, {
+        httpOnly: true,
+        path: "/",
+        sameSite: "None",
+        secure: true,
+      });
+
+      return response;
     } else {
       return NextResponse.json(
         { message: "Etwas ist schief gelaufen" },

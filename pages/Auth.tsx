@@ -51,6 +51,7 @@ const Auth = () => {
       });
       if (response.status === 200) {
         console.log(response.data.message);
+        localStorage.setItem("user", response.data.data);
         router.push("/");
       }
     } catch (error: any) {
