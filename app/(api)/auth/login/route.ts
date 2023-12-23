@@ -1,15 +1,11 @@
 import { NextResponse } from "next/server";
-import { MongoClient } from "mongodb";
 import { compare } from "bcrypt";
 import jwt from "jsonwebtoken";
 
-const uri = process.env.DATABASE_URL;
-const client = new MongoClient(uri);
+import connectToDatabase from "@/utils/db";
 
 export async function POST(req: Request) {
-  await client.connect();
-  const database = client.db();
-  const collection = database.collection("User");
+  const collection = await connectToDatabase("User");
 
   try {
     const { data } = await req.json();

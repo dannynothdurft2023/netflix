@@ -1,14 +1,9 @@
 import { NextResponse } from "next/server";
 import bcrypt from "bcrypt";
-import { MongoClient } from "mongodb";
-
-const uri = process.env.DATABASE_URL;
-const client = new MongoClient(uri);
+import connectToDatabase from "@/utils/db";
 
 export async function POST(req: Request) {
-  await client.connect();
-  const database = client.db();
-  const collection = database.collection("User");
+  const collection = await connectToDatabase("User");
 
   try {
     const { data } = await req.json();
