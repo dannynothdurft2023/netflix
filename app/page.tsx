@@ -1,25 +1,16 @@
 "use client";
-import axios from "axios";
-import { useRouter } from "next/navigation";
-import { useSelector } from "react-redux";
+import { logout } from "@/module/auth";
+import { useSelector, useDispatch } from "react-redux";
+import { incrementUser } from "@/module/redux/reducer/user";
 
 export default function Home() {
-  const router = useRouter();
+  const dispatch = useDispatch();
   const { user } = useSelector((state: any) => state.user);
 
-  console.log(user);
-
-  const logout = async () => {
-    try {
-      const response = await axios.post(`${process.env.URL}/auth/logout`);
-      if (response.data.success) {
-        localStorage.removeItem("user");
-        router.push("/auth");
-      } else {
-        console.error(response.data.message);
-      }
-    } catch (error) {
-      console.error(error);
+  const _logout = async () => {
+    const action = await logout();
+    if (action) {
+      dispatch(incrementUser(null));
     }
   };
 
@@ -28,7 +19,7 @@ export default function Home() {
       <>
         <main>
           <h1 className="text-2xl text-green-500">{user?.username}</h1>
-          <button className="h-10 w-full bg-white" onClick={logout}>
+          <button className="h-10 w-full bg-white" onClick={_logout}>
             Abmelden
           </button>
         </main>

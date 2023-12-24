@@ -4,7 +4,7 @@ import Image from "next/image";
 import axios from "axios";
 import { useRouter } from "next/navigation";
 import { useDispatch } from "react-redux";
-import { incrementUser } from "@/redux/reducer/user";
+import { incrementUser } from "@/module/redux/reducer/user";
 
 import Input from "@/components/Input";
 

@@ -1,8 +1,7 @@
 import type { Metadata } from "next";
 import "@/styles/globals.scss";
 
-import AuthProvider from "@/provider/AuthProvider";
-import { Redux } from "@/provider/Redux";
+import { Redux } from "@/module/redux/Redux";
 
 export const metadata: Metadata = {
   title: "Netflix Clone",
@@ -15,12 +14,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="de">
-      <Redux>
-        <AuthProvider>
-          <body>{children}</body>
-        </AuthProvider>
-      </Redux>
-    </html>
+    <Redux>
+      <html lang="de">
+        <body>{children}</body>
+      </html>
+    </Redux>
   );
 }
