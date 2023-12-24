@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import "@/styles/globals.scss";
 
+import AppLoader from "@/module/app-loader/AppLoader";
+
 import { Redux } from "@/module/redux/Redux";
 
 export const metadata: Metadata = {
@@ -16,7 +18,10 @@ export default function RootLayout({
   return (
     <Redux>
       <html lang="de">
-        <body>{children}</body>
+        <body>
+          <AppLoader />
+          {children}
+        </body>
       </html>
     </Redux>
   );
