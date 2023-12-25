@@ -5,6 +5,7 @@ import axios from "axios";
 import { useRouter } from "next/navigation";
 import { useDispatch } from "react-redux";
 import { incrementUser } from "@/module/redux/reducer/user";
+import { signIn, register } from "@/module/auth";
 
 import Input from "@/components/Input";
 
@@ -29,32 +30,18 @@ const Auth = () => {
     );
   }, []);
 
-  const register = useCallback(async () => {
-    try {
-      const response = await axios.post(`${process.env.URL}/auth/register`, {
-        data,
-      });
-      if (response.status === 200) {
-        console.log(response.data.message);
-        login();
-      }
-    } catch (error: any) {
-      console.log(error.response.data.message);
+  const reg = useCallback(async () => {
+    const reg = await register(data);
+    if (reg) {
+      login();
     }
   }, [data.email, data.password, data.passwordRepeat, data.username]);
 
   const login = useCallback(async () => {
-    try {
-      const response = await axios.post(`${process.env.URL}/auth/login`, {
-        data: { email: data.email, password: data.password },
-      });
-      if (response.status === 200) {
-        dispatch(incrementUser(response.data.data));
-        localStorage.setItem("user", response.data.token);
-        router.push("/profiles");
-      }
-    } catch (error: any) {
-      console.log(error);
+    const login = await signIn(data);
+    if (login) {
+      dispatch(incrementUser(login));
+      router.push("/profiles");
     }
   }, [data.email, data.password]);
 
@@ -111,7 +98,7 @@ const Auth = () => {
             </div>
             <button
               className="bg-red-600 py-3 text-white rounded-md w-full mt-10 hover:bg-red-700 transition"
-              onClick={variant === "login" ? login : register}
+              onClick={variant === "login" ? login : reg}
             >
               {variant === "login" ? "Anmelden" : "Registrieren"}
             </button>
