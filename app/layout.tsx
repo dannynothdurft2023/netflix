@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import "@/styles/globals.scss";
+import { Toaster } from "react-hot-toast";
 
 import AppLoader from "@/module/app-loader/AppLoader";
 
@@ -19,6 +20,7 @@ export default function RootLayout({
     <Redux>
       <html lang="de">
         <body>
+          <Toaster />
           <AppLoader />
           {children}
         </body>
