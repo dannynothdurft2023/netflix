@@ -30,5 +30,13 @@
       "thumbnailUrl":"https://download.blender.org/ED/cover.jpg",
       "genre":"Sci-Fi",
       "duration":"15 minutes"
+   },
+   {
+      "title":"War Dogs",
+      "description":"Friends Proog and Emo journey inside the folds of a seemingly infinite Machine, exploring the dark and twisted complex of wires, gears, and cogs, until a moment of conflict negates all their assumptions.",
+      "videoUrl":"https://firebasestorage.googleapis.com/v0/b/netflix-clone-1eaf4.appspot.com/o/War%20Dogs.mp4?alt=media&token=da9a1f08-8ca1-4045-a8f2-18658b7a7f01",
+      "thumbnailUrl":"https://download.blender.org/ED/cover.jpg",
+      "genre":"Action",
+      "duration":"1:54 H"
    }
 ]
