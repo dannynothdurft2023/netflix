@@ -23,7 +23,8 @@
     "react-hot-toast": "^2.4.1",
     "react-redux": "^9.0.4",
     "react-spinners": "^0.13.8",
-    "sass": "^1.69.5"
+    "sass": "^1.69.5",
+    "zustand": "^4.4.7"
   },
   "devDependencies": {
     "@types/bcrypt": "^5.0.2",

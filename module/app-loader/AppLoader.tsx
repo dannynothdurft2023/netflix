@@ -7,6 +7,8 @@ import BarLoader from "react-spinners/BarLoader";
 import { useRouter, usePathname } from "next/navigation";
 import { useSelector } from "react-redux";
 
+import { getRandomMovie } from "../movie";
+
 interface AppLoaderProps {}
 
 const AppLoader: FC<AppLoaderProps> = () => {
@@ -16,6 +18,7 @@ const AppLoader: FC<AppLoaderProps> = () => {
   const LoaderAktive = ModuleConfig["loader-aktive"];
   const [appIsStart, setAppIsStart] = useState<boolean>(false);
   const { user } = useSelector((state: any) => state.user);
+  const { randomMovie } = useSelector((state: any) => state.movie);
 
   useEffect(() => {
     setInterval(() => {
@@ -24,10 +27,10 @@ const AppLoader: FC<AppLoaderProps> = () => {
   }, []);
 
   useEffect(() => {
-    if (user !== null) {
+    if (user !== null && randomMovie !== null) {
       setAppIsStart(true);
     }
-  }, [user]);
+  }, [user, randomMovie]);
 
   useEffect(() => {
     if (appIsStart && user && pathname === "/auth") {
