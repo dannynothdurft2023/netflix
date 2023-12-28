@@ -11,8 +11,6 @@ export default function Home() {
     (state: any) => state.movie
   );
 
-  console.log(movies);
-
   return (
     user && (
       <>

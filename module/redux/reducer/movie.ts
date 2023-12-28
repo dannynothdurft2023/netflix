@@ -15,9 +15,13 @@ export const movie = createSlice({
     incrementMovie(state, action) {
       state.movies = action.payload;
     },
+    incrementFav(state, action) {
+      state.favorites = action.payload;
+    },
   },
 });
 
-export const { incrementRandomMovie, incrementMovie } = movie.actions;
+export const { incrementRandomMovie, incrementMovie, incrementFav } =
+  movie.actions;
 
 export default movie.reducer;
