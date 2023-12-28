@@ -56,7 +56,7 @@ const AppLoader: FC<AppLoaderProps> = () => {
         alt={ModuleConfig["img-alt"]}
         title={ModuleConfig["img-title"]}
       />
-      <BarLoader color="#36d7b7" loading={true} width={200} />
+      <BarLoader color="#d91f27" loading={true} width={200} />
     </div>
   ) : null;
 };

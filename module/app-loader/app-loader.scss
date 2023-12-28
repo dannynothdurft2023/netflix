@@ -1,28 +1,37 @@
 .app-loader-container {
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    background-color: #ffffff;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    z-index: 100;
-    opacity: 1;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: #ffffff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  z-index: 100;
+  opacity: 1;
+  gap: 25px;
 }
 
 .app-is-start {
-    animation-name: display-out;
-    animation-duration: 0.5s;
-    animation-timing-function: ease-in;
-    animation-fill-mode: forwards;
-    pointer-events: none;
+  animation-name: display-out;
+  animation-duration: 0.5s;
+  animation-timing-function: ease-in;
+  animation-fill-mode: forwards;
+  pointer-events: none;
 }
 
 @keyframes display-out {
-    0% {opacity: 1; display: flex;}
-    50% {opacity: 0.5;}
-    100% {opacity: 0; display: none;}
+  0% {
+    opacity: 1;
+    display: flex;
+  }
+  50% {
+    opacity: 0.5;
+  }
+  100% {
+    opacity: 0;
+    display: none;
+  }
 }
