@@ -22,3 +22,14 @@ export const useMovie = async (id: string) => {
     console.error(error);
   }
 };
+
+export const getMovies = async () => {
+  try {
+    const response = await axios.get(`${process.env.URL}/movie/movies`);
+    if (response.data.success) {
+      return response.data.data;
+    }
+  } catch (error) {
+    console.error(error);
+  }
+};
